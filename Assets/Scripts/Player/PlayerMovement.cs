@@ -1,0 +1,83 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace GJam.Player
+{
+public class PlayerMovement : MonoBehaviour
+{
+#region Collision
+    private const float MIN_COLLISION_DISTANCE = 0.1f;
+    private Vector3 _internalColliderSize = Vector3.one * 0.9f;
+#endregion
+
+    [SerializeField] private float _moveForce = 5;
+    private Vector2 _mvntVector;
+    
+    [SerializeField] private float _jumpForce = 12;
+    [Range(0.3f,1)] [SerializeField] private float _jumpDecayTick = 0.5f;
+    private Vector2 _jumpVector = Vector2.up;
+    private float _jumpForceCur = 0;
+
+    // [SerializeField] private float _gravityForce = 1;
+    // private Vector2 _gravityVector = Vector2.down;
+
+    public Vector3 GetMovement()
+    {
+        Vector3 movementDir = Vector3.zero;
+
+        _mvntVector = new Vector2(_mvntVector.x,0);
+
+        movementDir += TryAddVector(_mvntVector, _moveForce);
+        //movementDir += TryAddVector(_gravityVector, _gravityForce); // best for rbody to handle gravity
+        movementDir += TryAddVector(_jumpVector, _jumpForceCur);
+
+        if (_jumpForceCur > 0)
+            _jumpForceCur -= _jumpDecayTick;
+
+        return movementDir;
+    }
+
+    public void JumpImpulse()
+    {
+        if (_jumpForceCur > 0) // prevent jumping while midair from jumping (double jump before fall real??) - use state to get isMidAir from
+            return;
+
+        _jumpForceCur = _jumpForce; // + _gravityForce;
+    }
+
+    public void ReceiveMovement(Vector2 mvmnt)
+    {
+        _mvntVector = mvmnt;
+    }
+
+    private Vector3 TryAddVector(Vector3 movementDirection, float force)
+    {
+        if (force <= 0)
+            return Vector3.zero;
+
+        var collision = Collision(movementDirection,force);
+        if (collision == true)
+        {
+            if (collision.distance <= MIN_COLLISION_DISTANCE) // movement blocked
+                return Vector3.zero;
+            
+            if (collision.distance < .2f && force > collision.distance) // pillow to prevent getting stuck // activates at distance of .15
+                force = 0.1f;
+        }
+
+        return (force - 0.1f) * movementDirection ;
+    }
+
+    private RaycastHit2D Collision(Vector3 movementDirection, float force)
+    {
+        return Physics2D.BoxCast(
+                transform.position,
+                _internalColliderSize,
+                0f,
+                movementDirection,
+                force,
+                LayerMask.GetMask("Default"));
+    }
+}
+}
