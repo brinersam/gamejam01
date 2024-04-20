@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GJam.Player
 {
 public class PlayerMovement : MonoBehaviour
 {
-#region Collision
+    [SerializeField] private Rigidbody2D _rBody;
+    private float _rBodyGravityCached;
+
+    private bool _isClimbing = false;
+    private bool _isStunned = false;
+
     private const float MIN_COLLISION_DISTANCE = 0.1f;
     private Vector3 _internalColliderSize = Vector3.one * 0.9f;
-#endregion
 
     [SerializeField] private float _moveForce = 5;
     private Vector2 _mvntVector;
@@ -26,8 +28,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 movementDir = Vector3.zero;
 
-        _mvntVector = new Vector2(_mvntVector.x,0);
-
         movementDir += TryAddVector(_mvntVector, _moveForce);
         //movementDir += TryAddVector(_gravityVector, _gravityForce); // best for rbody to handle gravity
         movementDir += TryAddVector(_jumpVector, _jumpForceCur);
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void JumpImpulse()
     {
-        if (_jumpForceCur > 0) // prevent jumping while midair from jumping (double jump before fall real??) - use state to get isMidAir from
+        if (_isClimbing || _jumpForceCur > 0) // prevent jumping while midair from jumping (double jump before fall real??) - use state to get isMidAir from
             return;
 
         _jumpForceCur = _jumpForce; // + _gravityForce;
@@ -48,7 +48,39 @@ public class PlayerMovement : MonoBehaviour
 
     public void ReceiveMovement(Vector2 mvmnt)
     {
-        _mvntVector = mvmnt;
+        _mvntVector = ProcessMovement(mvmnt);
+    }
+
+    public void SetIsClimbing(bool active)
+    {
+        if (active)
+        {
+            _rBodyGravityCached = _rBody.gravityScale;
+            _rBody.gravityScale = 0;
+            _rBody.velocity = Vector2.zero;
+            _isClimbing = true;
+        }
+        else
+        {
+            _rBody.gravityScale = _rBodyGravityCached;
+            _isClimbing = false;
+        }
+    }
+
+    private Vector2 ProcessMovement(Vector2 mvmnt)
+    {
+        if (_isClimbing)
+        {
+            return mvmnt;
+        }
+        if (_isStunned)
+        {
+            return Vector2.zero;
+        }
+        else
+        {
+            return new Vector2(mvmnt.x,0);
+        }
     }
 
     private Vector3 TryAddVector(Vector3 movementDirection, float force)

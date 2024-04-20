@@ -12,6 +12,12 @@ namespace GJam.Player
             transform.position += _playerMovement.GetMovement() * Time.deltaTime;
         }
 
+        public void SetClimbState(bool active)
+        {
+            _playerMovement.SetIsClimbing(active);
+        }
+
+
         private void OnJump(InputValue input)
         {
             _playerMovement.JumpImpulse();
