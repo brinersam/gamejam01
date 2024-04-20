@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace GJam.Player
+namespace GJam.Living.Movement
 {
-public class PlayerMovement : MonoBehaviour
+public class Movement : MonoBehaviour // todo coyote jumps and all that stuff  https://youtu.be/2S3g8CgBG1g?t=218
 {
     [SerializeField] private Rigidbody2D _rBody;
     private float _rBodyGravityCached;
@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     [Range(0.3f,1)] [SerializeField] private float _jumpDecayTick = 0.5f;
     private Vector2 _jumpVector = Vector2.up;
     private float _jumpForceCur = 0;
+
+    private Vector3 _curImpulse;
 
     // [SerializeField] private float _gravityForce = 1;
     // private Vector2 _gravityVector = Vector2.down;
@@ -45,10 +47,21 @@ public class PlayerMovement : MonoBehaviour
 
     public void JumpImpulse()
     {
-        if (_isClimbing || _jumpForceCur > 0) // prevent jumping while midair from jumping (double jump before fall real??) - use state to get isMidAir from
+        if (_jumpForceCur > 0) // prevent jumping while midair from jumping (double jump before fall real??) - use state to get isMidAir from
             return;
 
+        if (_isClimbing)
+        {
+            _jumpForceCur = _jumpForce * 0.5f;
+            return;
+        }
+
         _jumpForceCur = _jumpForce; // + _gravityForce;
+    }
+
+    public void ReceiveImpulse(Vector3 impulse)
+    {
+        _rBody.AddForce(impulse);
     }
 
     public void ReceiveMovement(Vector2 mvmnt)
