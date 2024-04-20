@@ -24,6 +24,11 @@ public class PlayerMovement : MonoBehaviour
     // [SerializeField] private float _gravityForce = 1;
     // private Vector2 _gravityVector = Vector2.down;
 
+    private void Start()
+    {
+        _rBodyGravityCached = _rBody.gravityScale;
+    }
+
     public Vector3 GetMovement()
     {
         Vector3 movementDir = Vector3.zero;
@@ -55,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (active)
         {
-            _rBodyGravityCached = _rBody.gravityScale;
             _rBody.gravityScale = 0;
             _rBody.velocity = Vector2.zero;
             _isClimbing = true;
