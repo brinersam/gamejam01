@@ -15,10 +15,11 @@ namespace GJam.Player
     {
         public static PlayerController Instance;
 
-        private Movement _movement;
-        private Health _health;
+        [SerializeField] private SpriteRenderer _visual;
         [SerializeField] private Transform _hitboxHolder;
 
+        private Movement _movement;
+        private Health _health;
         private IItem[] _invArr = new IItem[4];
         private int _item_active_idx = 0;
         
@@ -100,7 +101,7 @@ namespace GJam.Player
 
         private Vector3 CharacterToPointerNormalized()
         {
-            return ((Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position)*4).normalized;
+            return (Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position).normalized;
         }
 
         private void OnJump(InputValue input)
@@ -110,7 +111,9 @@ namespace GJam.Player
 
         private void OnMovement(InputValue input)
         {
-            _movement.ReceiveMovement(input.Get<Vector2>());
+            Vector2 mvmnt = input.Get<Vector2>();
+            _visual.flipX = mvmnt.x < 0;
+            _movement.ReceiveMovement(mvmnt);
         }
 
         private void OnMainInteract(InputValue input)

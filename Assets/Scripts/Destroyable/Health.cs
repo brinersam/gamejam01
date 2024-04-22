@@ -16,6 +16,7 @@ public class Health : MonoBehaviour
     private int __curHp;
     public int CurHp {get {return __curHp;} set {__curHp = HPWatcher(value);}}
 
+    public event Action<float,bool> OnHPChange;
     public event Action OnDeath;
 
     private void Awake()
@@ -63,11 +64,14 @@ public class Health : MonoBehaviour
                 if ( _isPlayer && _healthGated == false) //healthgate, player only
                 {
                     _healthGated = true;
-                    return 1; // ignore damage set hp to minimal
+                    newHp = 1; // ignore damage set hp to minimal
                 }
-                
-                Die();
-                return newHp;
+                else
+                {
+                    Die();
+                    OnHPChange?.Invoke((float)newHp/_maxHp, _healthGated);
+                    return newHp;
+                }
             }
         }
         else if (newHp > CurHp) // healed
@@ -75,9 +79,10 @@ public class Health : MonoBehaviour
             if (_healthGated == true) // reset healthgate
                 _healthGated = false;
             
-            return Math.Min(newHp,_maxHp);
+            newHp = Math.Min(newHp,_maxHp);
         }
 
+        OnHPChange?.Invoke((float)newHp/_maxHp, _healthGated);
         return newHp;
     }
 

@@ -30,8 +30,8 @@ public class ItemMeleeHitbox : IItem
                 return;
             Vector3 callerPos = caller.transform.position;
 
-            Debug.Log("drawing attack ray");
-            Debug.DrawRay(callerPos, mouseDirVector * 2, Color.red, 2f);
+            // Debug.Log("drawing attack ray");
+            // Debug.DrawRay(callerPos, mouseDirVector * 2, Color.red, 2f);
             
             _hitbox.transform.position = callerPos + mouseDirVector * _itemdata.AttackDistance;
             _hitbox.Flash();

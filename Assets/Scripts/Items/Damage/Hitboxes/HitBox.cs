@@ -29,8 +29,8 @@ public class HitBox : MonoBehaviour
         if (owner.Data.Knockback > 0)
             knockbackVector = Vector3.Normalize(collision.transform.position - transform.position); // get vector from item's owner position to collision's object position
         
-        Debug.DrawRay(transform.position, knockbackVector * 4, Color.red ,duration: 3);
-        Debug.Log("drawing knockback ray");
+        // Debug.DrawRay(transform.position, knockbackVector * 4, Color.red ,duration: 3);
+        // Debug.Log("drawing knockback ray");
 
         owner.OnHitting(target, knockbackVector);
         gameObject.SetActive(false);
