@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: DebugMelee
   m_EditorClassIdentifier: 
   Damage: 1
-  Knockback: 54
+  Knockback: 380
   AttackSpeed: 3
+  hitboxOBJ: {fileID: 8670717984979322725, guid: 3dcb4b76778f33348af7de28d1017350, type: 3}

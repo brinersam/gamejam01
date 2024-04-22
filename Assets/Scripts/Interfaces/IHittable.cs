@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IHittable
 {
-    void GetHitwKnockback(SODamage damageData, Vector3 knockbackVector);
+    void GetHit(SOItem damageData, Vector3 knockbackVector);
 }
