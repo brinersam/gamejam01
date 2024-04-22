@@ -20,7 +20,7 @@ public class HitBox : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {   
-        if (!collision.TryGetComponent(out PlayerController target)) //todo replace with generic Hittable component
+        if (!collision.TryGetComponent(out Health target))
             return;
         
         Vector3 knockbackVector = Vector3.zero;

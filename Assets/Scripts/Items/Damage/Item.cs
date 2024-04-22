@@ -40,12 +40,12 @@ public class Item
         Debug.Log("r click");
     }
 
-    public void OnHitting(PlayerController target, Vector3 knockbackVector) //todo replace with generic Hittable component
+    public void OnHitting(Health target, Vector3 knockbackVector) 
     {
-        if (target.gameObject == PlayerController.Instance.gameObject && _playerOwned && _itemdata.SelfDamage == false)
-        {
-            return; // not really necessary i think unless we have bombs
-        }
+        // if (target.gameObject == PlayerController.Instance.gameObject && _playerOwned && _itemdata.SelfDamage == false)
+        // {
+        //     return; // not really necessary i think unless we have bombs
+        // }
 
         target.GetHit(_itemdata, knockbackVector);
     }
