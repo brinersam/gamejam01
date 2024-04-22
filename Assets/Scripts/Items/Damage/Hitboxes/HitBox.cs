@@ -1,12 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using GJam.Items;
-using GJam.Player;
 using UnityEngine;
 
 public class HitBox : MonoBehaviour
 {
     public ItemMeleeHitbox owner;
+
+    private readonly WaitForSeconds _lifeTime = new WaitForSeconds(0.2f);
 
     private void Awake()
     {
@@ -16,6 +16,7 @@ public class HitBox : MonoBehaviour
     public void Flash()
     {
         gameObject.SetActive(true);
+        StartCoroutine(nameof(UnFlash));
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -32,6 +33,12 @@ public class HitBox : MonoBehaviour
         Debug.Log("drawing knockback ray");
 
         owner.OnHitting(target, knockbackVector);
+        gameObject.SetActive(false);
+    }
+
+    IEnumerator UnFlash()
+    {
+        yield return _lifeTime;
         gameObject.SetActive(false);
     }
 }

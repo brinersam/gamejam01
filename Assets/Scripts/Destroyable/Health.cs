@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] private DumbWaysToDieEnum deathDelegate;
     [SerializeField] private bool _isPlayer = false;
     [SerializeField] private int _maxHp = 2;
 
     private Movement _movement;
     private Rigidbody2D _rBody;
+    private LootDrop _loot;
     private bool _healthGated = false;
     
     private int __curHp;
@@ -18,6 +20,9 @@ public class Health : MonoBehaviour
 
     private void Awake()
     {
+        if (TryGetComponent(out LootDrop loot))
+            _loot = loot;
+
         if (TryGetComponent(out Movement movement))
             _movement = movement;
         else if (TryGetComponent(out Rigidbody2D rbody)) // cat is fine too
@@ -42,12 +47,11 @@ public class Health : MonoBehaviour
     private void Die()
     {
         OnDeath?.Invoke();
-        Debug.Log("death...");
-        
-        if (_isPlayer)
-            Debug.Log("...of the player...");
-        
-        gameObject.SetActive(false);
+
+        if (_loot != null)
+            _loot.Drop();
+
+        DumbWays.ToDie[deathDelegate].Invoke(gameObject);
     }
 
     private int HPWatcher(int newHp)

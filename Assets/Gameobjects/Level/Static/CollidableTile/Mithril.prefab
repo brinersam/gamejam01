@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3825033504878798988
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1614379422284163719, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614379422284163719, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614379422284163719, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614379422284163719, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614379422284163719, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614379422284163719, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614379422284163719, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614379422284163719, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614379422284163719, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614379422284163719, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734839380697434122, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8584906
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734839380697434122, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7051205
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734839380697434122, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_Color.r
+      value: 0.44949272
+      objectReference: {fileID: 0}
+    - target: {fileID: 4231711428328982206, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_Name
+      value: Mithril
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1682799046422713330, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5240093125112135804}
+    - targetCorrespondingSourceObject: {fileID: 1682799046422713330, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2887865107294247278}
+  m_SourcePrefab: {fileID: 100100000, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+--- !u!1 &2472405164957432702 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1682799046422713330, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+  m_PrefabInstance: {fileID: 3825033504878798988}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5240093125112135804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2472405164957432702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff80564fa9778944a3e1294a6751ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathDelegate: 0
+  _isPlayer: 0
+  _maxHp: 2
+--- !u!114 &2887865107294247278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2472405164957432702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc8095c48fb4624ab57f54e623da19f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MithrilDropAmnt: 2

@@ -84,24 +84,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8135b5b9e39d4ef4998e3fd09cbd386b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movement: {fileID: 7839934413179620777}
   _hitboxHolder: {fileID: 7864690265855188195}
   _startingItem_slot0: {fileID: 11400000, guid: 9cf1c960e0642d54eb48d1eb694d9375, type: 2}
   _startingItem_slot1: {fileID: 11400000, guid: 03ad74e0694726a4fa4304651f06eea3, type: 2}
-  _startingItem_slot2: {fileID: 11400000, guid: 03ad74e0694726a4fa4304651f06eea3, type: 2}
+  _startingItem_slot2: {fileID: 0}
   _startingItem_slot3: {fileID: 0}
-  _item_slot0:
-    _itemdata: {fileID: 0}
-    _hitbox: {fileID: 0}
-  _item_slot1:
-    _itemdata: {fileID: 0}
-    _hitbox: {fileID: 0}
-  _item_slot2:
-    _itemdata: {fileID: 0}
-    _hitbox: {fileID: 0}
-  _item_slot3:
-    _itemdata: {fileID: 0}
-    _hitbox: {fileID: 0}
 --- !u!114 &7839934413179620777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,8 +117,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff80564fa9778944a3e1294a6751ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isPlayer: 0
-  _maxHp: 10
+  deathDelegate: 2
+  _isPlayer: 1
+  _maxHp: 5
 --- !u!61 &8627862467261042221
 BoxCollider2D:
   m_ObjectHideFlags: 0
