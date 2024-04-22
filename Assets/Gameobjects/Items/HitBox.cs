@@ -8,14 +8,19 @@ public class HitBox : MonoBehaviour
 {
     public Item owner;
 
-    // private void OnEnable()
-    // {
-    //     gameObject.SetActive(false);
-    // }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Awake()
     {
-        if (!collision.TryGetComponent(out PlayerController plr)) //todo replace with generic Hittable component
+        gameObject.SetActive(false);
+    }
+
+    public void Flash()
+    {
+        gameObject.SetActive(true);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {   
+        if (!collision.TryGetComponent(out PlayerController target)) //todo replace with generic Hittable component
             return;
         
         Vector3 knockbackVector = Vector3.zero;
@@ -26,6 +31,7 @@ public class HitBox : MonoBehaviour
         Debug.DrawRay(transform.position, knockbackVector * 4, Color.red ,duration: 3);
         Debug.Log("drawing knockback ray");
 
-        owner.OnHitting(plr, knockbackVector);
+        owner.OnHitting(target, knockbackVector);
+        gameObject.SetActive(false);
     }
 }

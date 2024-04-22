@@ -11,6 +11,8 @@ namespace GJam.Player
 {
     public class PlayerController : MonoBehaviour, IHittable
     {
+        public static PlayerController Instance;
+
         [SerializeField] private Movement _movement;
         [SerializeField] private Transform _hitboxHolder;
 
@@ -30,14 +32,16 @@ namespace GJam.Player
 
         private void Awake()
         {
+            Instance = this;
+
             if (_startingItem_slot0 != null)
-                _item_slot0 = new Item(_startingItem_slot0);
+                _item_slot0 = new Item(_startingItem_slot0, true);
             if (_startingItem_slot1 != null)
-                _item_slot1 = new Item(_startingItem_slot1);
+                _item_slot1 = new Item(_startingItem_slot1, true);
             if (_startingItem_slot2 != null)
-                _item_slot2 = new Item(_startingItem_slot2);
+                _item_slot2 = new Item(_startingItem_slot2, true);
             if (_startingItem_slot3 != null)
-                _item_slot3 = new Item(_startingItem_slot3);
+                _item_slot3 = new Item(_startingItem_slot3, true);
 
             _invArr[0] = _item_slot0;
             _invArr[1] = _item_slot1;
@@ -104,10 +108,8 @@ namespace GJam.Player
             if (item == null || item.Data.HasHitbox == false)
                 return;
             
-            Instantiate(item.Data.hitboxOBJ, _hitboxHolder, false)
-                .GetComponent<HitBox>().owner = item; //Vector2.zero, Quaternion.identity, 
-
-            //obj.GetComponent<HitBox>().owner = item;
+            item.LinkHitbox(Instantiate(item.Data.hitboxOBJ, _hitboxHolder, false)
+                                .GetComponent<HitBox>());
         }
 
         public void GetHit(SOItem _itemdata, Vector3 knockbackVector)

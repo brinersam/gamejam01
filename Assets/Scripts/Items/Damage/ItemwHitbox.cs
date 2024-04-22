@@ -1,7 +1,6 @@
 using System;
 using GJam.Player;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace GJam.Items
 {
@@ -9,10 +8,13 @@ namespace GJam.Items
 public class Item
 {
     [SerializeField] private SOItem _itemdata;
+    [SerializeField] private HitBox _hitbox;
+    private bool _playerOwned;
     public SOItem Data => _itemdata;
 
-    public Item(SOItem data)
+    public Item(SOItem data, bool heldByPlayer = false)
     {
+        _playerOwned = heldByPlayer;   
         _itemdata = data;
     }
     
@@ -20,9 +22,14 @@ public class Item
     {
         if (!Validate())
             return;
+        Vector3 callerPos = caller.transform.position;
 
-        Debug.DrawRay(caller.transform.position, mouseDirVector * 2, Color.red, 2f);
-        Debug.Log("l click");
+        Debug.Log("drawing attack ray");
+        Debug.DrawRay(callerPos, mouseDirVector * 2, Color.red, 2f);
+        
+        _hitbox.transform.position = callerPos + mouseDirVector * _itemdata.AttackDistance;
+        _hitbox.Flash();
+        //_hitbox.transform.Rotate(callerPos, Vector2.Angle(Vector2.right,mouseDirVector)); // todo
     }
 
     public void Use_Alt(PlayerController caller, Vector3 mouseDirVector)
@@ -33,15 +40,20 @@ public class Item
         Debug.Log("r click");
     }
 
-    public void OnHitting(IHittable target, Vector3 knockbackVector)
+    public void OnHitting(PlayerController target, Vector3 knockbackVector) //todo replace with generic Hittable component
     {
-        // Vector3 knockbackVector;
-        // if (_itemdata.Knockback <= 0)
-        //     knockbackVector = Vector3.zero;
-        // else
-        //     knockbackVector = Vector3.Normalize(targetPos - transform.position);
-         
+        if (target.gameObject == PlayerController.Instance.gameObject && _playerOwned && _itemdata.SelfDamage == false)
+        {
+            return; // not really necessary i think unless we have bombs
+        }
+
         target.GetHit(_itemdata, knockbackVector);
+    }
+
+    public void LinkHitbox(HitBox box)
+    {
+        this._hitbox = box;
+        box.owner = this;
     }
 
     private bool Validate()
