@@ -30,10 +30,13 @@ public class Health : MonoBehaviour
     {
         CurHp -= _itemdata.Damage;
 
-        if (_movement != null)
-            _movement.ReceiveImpulse(knockbackVector * _itemdata.Knockback);
-        else if (_rBody != null)
-            _rBody.AddForce(knockbackVector * _itemdata.Knockback);
+        if (knockbackVector != default)
+        {
+            if (_movement != null)
+                _movement.ReceiveImpulse(knockbackVector * _itemdata.Knockback);
+            else if (_rBody != null)
+                _rBody.AddForce(knockbackVector * _itemdata.Knockback);
+        }
     }
 
     private void Die()
@@ -67,6 +70,8 @@ public class Health : MonoBehaviour
         {
             if (_healthGated == true) // reset healthgate
                 _healthGated = false;
+            
+            return Math.Min(newHp,_maxHp);
         }
 
         return newHp;

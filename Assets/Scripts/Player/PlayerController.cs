@@ -15,10 +15,11 @@ namespace GJam.Player
     {
         public static PlayerController Instance;
 
-        [SerializeField] private Movement _movement;
+        private Movement _movement;
+        private Health _health;
         [SerializeField] private Transform _hitboxHolder;
 
-        private Item[] _invArr = new Item[4];
+        private IItem[] _invArr = new IItem[4];
         private int _item_active_idx = 0;
         
         [SerializeField] private SOItem _startingItem_slot0;
@@ -26,24 +27,36 @@ namespace GJam.Player
         [SerializeField] private SOItem _startingItem_slot2;
         [SerializeField] private SOItem _startingItem_slot3;
 
-        [SerializeField] private Item _item_slot0;
-        [SerializeField] private Item _item_slot1;
-        [SerializeField] private Item _item_slot2;
-        [SerializeField] private Item _item_slot3;
-        private Item _activeItem => _invArr[_item_active_idx];
+        [SerializeField] private IItem _item_slot0;
+        [SerializeField] private IItem _item_slot1;
+        [SerializeField] private IItem _item_slot2;
+        [SerializeField] private IItem _item_slot3;
+        private IItem _activeItem => _invArr[_item_active_idx];
+
+        public Health Health => _health;
 
         private void Awake()
         {
             Instance = this;
 
+            if (TryGetComponent(out Health hp))
+                _health = hp;
+            else
+                Debug.LogWarning("No health component!", gameObject);
+
+            if (TryGetComponent(out Movement mvnt))
+                _movement = mvnt;
+            else
+                Debug.LogWarning("No movement component!", gameObject);
+
             if (_startingItem_slot0 != null)
-                _item_slot0 = new Item(_startingItem_slot0, true);
+                _item_slot0 = new ItemMeleeHitbox(_startingItem_slot0);
             if (_startingItem_slot1 != null)
-                _item_slot1 = new Item(_startingItem_slot1, true);
+                _item_slot1 = new ItemConsumable(_startingItem_slot1);
             if (_startingItem_slot2 != null)
-                _item_slot2 = new Item(_startingItem_slot2, true);
+                _item_slot2 = new ItemConsumable(_startingItem_slot2);
             if (_startingItem_slot3 != null)
-                _item_slot3 = new Item(_startingItem_slot3, true);
+                _item_slot3 = new ItemConsumable(_startingItem_slot3);
 
             _invArr[0] = _item_slot0;
             _invArr[1] = _item_slot1;
@@ -64,6 +77,30 @@ namespace GJam.Player
         public void SetClimbState(bool active)
         {
             _movement.SetIsClimbing(active);
+        }
+
+        public void SetActiveItem(int slotIdx)
+        {
+            _item_active_idx = slotIdx;
+            
+            UpdateHitbox(_activeItem as ItemMeleeHitbox);
+        }
+
+        public void UpdateHitbox(ItemMeleeHitbox item)
+        {
+            foreach (Transform child in _hitboxHolder)
+                Destroy(child.gameObject);
+
+            if (item is null || item.Data.HasHitbox == false)
+                return;
+            
+            item.LinkHitbox(Instantiate(item.Data.hitboxOBJ, _hitboxHolder, false)
+                                .GetComponent<HitBox>());
+        }
+
+        private Vector3 CharacterToPointerNormalized()
+        {
+            return ((Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position)*4).normalized;
         }
 
         private void OnJump(InputValue input)
@@ -96,27 +133,21 @@ namespace GJam.Player
             _activeItem.Use_Alt(this, CharacterToPointerNormalized());
         }
 
-        public void SetActiveItem(int slotIdx)
+        private void OnInv_0(InputValue input)
         {
-            _item_active_idx = slotIdx;
-            UpdateHitbox(_activeItem);
+            SetActiveItem(0);
         }
-
-        public void UpdateHitbox(Item item)
+        private void OnInv_1(InputValue input)
         {
-            foreach (GameObject child in _hitboxHolder)
-                Destroy(child);
-
-            if (item == null || item.Data.HasHitbox == false)
-                return;
-            
-            item.LinkHitbox(Instantiate(item.Data.hitboxOBJ, _hitboxHolder, false)
-                                .GetComponent<HitBox>());
+            SetActiveItem(1);
         }
-
-        private Vector3 CharacterToPointerNormalized()
+        private void OnInv_2(InputValue input)
         {
-            return ((Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position)*2).normalized;
+            SetActiveItem(2);
+        }
+        private void OnInv_3(InputValue input)
+        {
+            SetActiveItem(3);
         }
     }
 }

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62cd49337c3b04b4c99653ec3cfb4bcc, type: 3}
-  m_Name: DebugMelee
+  m_Name: Heals u
   m_EditorClassIdentifier: 
-  Damage: 12
-  Knockback: 639
-  AttackSpeed: 3
-  AttackDistance: 4
-  hitboxOBJ: {fileID: 8670717984979322725, guid: 3dcb4b76778f33348af7de28d1017350, type: 3}
+  Damage: -2
+  Knockback: 0
+  AttackSpeed: 0
+  AttackDistance: 0
+  hitboxOBJ: {fileID: 0}
   SelfDamage: 0

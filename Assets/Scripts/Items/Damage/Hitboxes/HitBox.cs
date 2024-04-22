@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class HitBox : MonoBehaviour
 {
-    public Item owner;
+    public ItemMeleeHitbox owner;
 
     private void Awake()
     {

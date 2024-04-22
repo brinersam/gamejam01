@@ -5,16 +5,14 @@ using UnityEngine;
 namespace GJam.Items
 {
 [Serializable]
-public class Item
+public class ItemMeleeHitbox : IItem
 {
     [SerializeField] private SOItem _itemdata;
     [SerializeField] private HitBox _hitbox;
-    private bool _playerOwned;
     public SOItem Data => _itemdata;
 
-    public Item(SOItem data, bool heldByPlayer = false)
+    public ItemMeleeHitbox(SOItem data)
     {
-        _playerOwned = heldByPlayer;   
         _itemdata = data;
     }
     
