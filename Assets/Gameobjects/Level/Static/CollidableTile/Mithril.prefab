@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1682799046422713330, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1734839380697434122, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
       propertyPath: m_Color.b
       value: 0.8584906
@@ -64,29 +68,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mithril
       objectReference: {fileID: 0}
+    - target: {fileID: 4231711428328982206, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1682799046422713330, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 4231711428328982206, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5240093125112135804}
-    - targetCorrespondingSourceObject: {fileID: 1682799046422713330, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      addedObject: {fileID: 7580684301903599178}
+    - targetCorrespondingSourceObject: {fileID: 4231711428328982206, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2887865107294247278}
+      addedObject: {fileID: 66008368459918452}
   m_SourcePrefab: {fileID: 100100000, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
---- !u!1 &2472405164957432702 stripped
+--- !u!1 &1130175544332529202 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1682799046422713330, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4231711428328982206, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
   m_PrefabInstance: {fileID: 3825033504878798988}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5240093125112135804
+--- !u!114 &7580684301903599178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2472405164957432702}
+  m_GameObject: {fileID: 1130175544332529202}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ff80564fa9778944a3e1294a6751ff6, type: 3}
@@ -95,13 +103,13 @@ MonoBehaviour:
   deathDelegate: 0
   _isPlayer: 0
   _maxHp: 2
---- !u!114 &2887865107294247278
+--- !u!114 &66008368459918452
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2472405164957432702}
+  m_GameObject: {fileID: 1130175544332529202}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acc8095c48fb4624ab57f54e623da19f, type: 3}

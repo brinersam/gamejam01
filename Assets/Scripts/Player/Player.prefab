@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8627862467261042221}
   - component: {fileID: 4789386083543320123}
   - component: {fileID: 982259962617569837}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 190324385146069609}
   - component: {fileID: 5873371374407062446}
   - component: {fileID: 2784627578526885904}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7864690265855188195}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hitboxholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6114941818894579944}
   - component: {fileID: 5000829064649989377}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -452,7 +452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 459848947100054943}
   - component: {fileID: 5399231320556601078}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Virtual Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,7 +524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1572809641534365694}
   - component: {fileID: 3541000204907839718}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,19 +646,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7421118200214007124, guid: d792f1cec4aad0c44b70658358a19bcf, type: 3}
       propertyPath: m_BackGroundColor.b
-      value: 0.12330902
+      value: 0.8584906
       objectReference: {fileID: 0}
     - target: {fileID: 7421118200214007124, guid: d792f1cec4aad0c44b70658358a19bcf, type: 3}
       propertyPath: m_BackGroundColor.g
-      value: 0.13648823
+      value: 0.7248576
       objectReference: {fileID: 0}
     - target: {fileID: 7421118200214007124, guid: d792f1cec4aad0c44b70658358a19bcf, type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0.16037738
+      value: 0.7512146
       objectReference: {fileID: 0}
     - target: {fileID: 8369399985278830418, guid: d792f1cec4aad0c44b70658358a19bcf, type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369399985278830418, guid: d792f1cec4aad0c44b70658358a19bcf, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1115233571002369571}
   - component: {fileID: 1786585441811972839}
   - component: {fileID: 1865463077043344676}
-  m_Layer: 8
-  m_Name: HitBox_Debug
+  m_Layer: 6
+  m_Name: HitBox_Debug_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

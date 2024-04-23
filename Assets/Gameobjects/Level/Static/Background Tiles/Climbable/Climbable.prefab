@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1896249894193062112, guid: b2e384e515de5b04fa58916473a5e609, type: 3}
+      propertyPath: m_Size.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1896249894193062112, guid: b2e384e515de5b04fa58916473a5e609, type: 3}
+      propertyPath: m_Size.y
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 6514126575042850312, guid: b2e384e515de5b04fa58916473a5e609, type: 3}
       propertyPath: m_Name
       value: Climbable
@@ -84,22 +92,22 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8612672860969417540, guid: b2e384e515de5b04fa58916473a5e609, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 6514126575042850312, guid: b2e384e515de5b04fa58916473a5e609, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2868711554912581452}
+      addedObject: {fileID: 5431099681060600658}
   m_SourcePrefab: {fileID: 100100000, guid: b2e384e515de5b04fa58916473a5e609, type: 3}
---- !u!1 &5181421725875141217 stripped
+--- !u!1 &7640519864815300397 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 8612672860969417540, guid: b2e384e515de5b04fa58916473a5e609, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6514126575042850312, guid: b2e384e515de5b04fa58916473a5e609, type: 3}
   m_PrefabInstance: {fileID: 3489805714417631525}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2868711554912581452
+--- !u!114 &5431099681060600658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5181421725875141217}
+  m_GameObject: {fileID: 7640519864815300397}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c695130f91a691f479452796e5a3d8c5, type: 3}

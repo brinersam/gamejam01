@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 using GJam.Living.Movement;
 using GJam.Items;
-
+using System;
 
 namespace GJam.Player
 {
@@ -35,6 +35,8 @@ namespace GJam.Player
         private IItem _activeItem => _invArr[_item_active_idx];
 
         public Health Health => _health;
+
+        public Action IUseable;
 
         private void Awake()
         {
@@ -151,6 +153,10 @@ namespace GJam.Player
         private void OnInv_3(InputValue input)
         {
             SetActiveItem(3);
+        }
+        private void OnUse(InputValue input)
+        {
+            IUseable?.Invoke();
         }
     }
 }

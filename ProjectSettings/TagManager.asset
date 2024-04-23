@@ -8,14 +8,14 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
+  - DMG_Hitbox_Player
+  - DMG_Hitbox_Enemy
+  - NoCollisions, Player Trigger only
   - 
-  - 
-  - NonSolid
-  - 
-  - 
+  - Enemy
   - 
   - 
   - 
