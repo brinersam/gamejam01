@@ -10,7 +10,47 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1412067480464184249, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
       propertyPath: m_Name
-      value: Useable
+      value: RefillStation
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031859893544759995, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
+      propertyPath: _IUseableMonoBeh
+      value: 
+      objectReference: {fileID: 5381527696165813865}
+    - target: {fileID: 6055996362731378360, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
+      propertyPath: m_Radius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7834120652702740507, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.3726415
+      objectReference: {fileID: 0}
+    - target: {fileID: 7834120652702740507, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.67429936
+      objectReference: {fileID: 0}
+    - target: {fileID: 7834120652702740507, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736597561170840745, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736597561170840745, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736597561170840745, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736597561170840745, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736597561170840745, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8829641351094760631, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -55,5 +95,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1412067480464184249, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5381527696165813865}
   m_SourcePrefab: {fileID: 100100000, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
+--- !u!1 &7098712572854305021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1412067480464184249, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
+  m_PrefabInstance: {fileID: 8150137212947026756}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5381527696165813865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7098712572854305021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca8777e87c5fe5d4b8a6c2804e593f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _forceWorking: 0
+  _prevStation: {fileID: 0}
+  _leaksSinceLastStation: []
+  _debugRays: 0

@@ -17,21 +17,18 @@ public class System_Ticker : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(nameof(TimerLoop));
+        InvokeRepeating(nameof(Tick),1f,1f);
     }
 
-    public void WaitCallback(float seconds, Action callback)
+    private void Tick()
     {
-        StartCoroutine(nameof(Wildcard),(seconds,callback));
-    }
-
-
-    IEnumerator TimerLoop()
-    {
-        yield return waitSeconds_1;
         OnSecond?.Invoke();
     }
 
+    public void WaitCallback(float seconds, Action callback) // coroutines from within non monobeh scripts!
+    {
+        StartCoroutine(nameof(Wildcard),(seconds,callback));
+    }
     IEnumerator Wildcard((float,Action) tuple)
     {
         yield return new WaitForSeconds(tuple.Item1);

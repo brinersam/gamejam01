@@ -32,6 +32,11 @@ public class Health : MonoBehaviour
         __curHp = _maxHp;
     }
 
+    public void Restore()
+    {
+        CurHp = _maxHp;
+    }
+
     public void GetHit(SOItem _itemdata, Vector3 knockbackVector)
     {
         CurHp -= _itemdata.Damage;
@@ -54,6 +59,7 @@ public class Health : MonoBehaviour
 
         DumbWays.ToDie[deathDelegate].Invoke(gameObject);
     }
+
 
     private int HPWatcher(int newHp)
     {

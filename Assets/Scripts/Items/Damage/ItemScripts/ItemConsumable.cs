@@ -23,6 +23,7 @@ public class ItemConsumable : IItem
             return;
 
         caller.Health.GetHit(_itemdata, default);
+        caller.Torch.RefillPct(_itemdata.Refiltorch_Pct);
         //inv.remove(this)
     }
 

@@ -20,6 +20,7 @@ namespace GJam.Player
 
         private Movement _movement;
         private Health _health;
+        private Torch _torch;
         private IItem[] _invArr = new IItem[4];
         private int _item_active_idx = 0;
         
@@ -35,12 +36,18 @@ namespace GJam.Player
         private IItem _activeItem => _invArr[_item_active_idx];
 
         public Health Health => _health;
+        public Torch Torch => _torch;
 
         public Action IUseable;
 
         private void Awake()
         {
             Instance = this;
+
+            if (TryGetComponent(out Torch trch))
+                _torch = trch;
+            else
+                Debug.LogWarning("No torch component!", gameObject);
 
             if (TryGetComponent(out Health hp))
                 _health = hp;
@@ -104,6 +111,12 @@ namespace GJam.Player
         private Vector3 CharacterToPointerNormalized()
         {
             return (Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position).normalized;
+        }
+
+        public void Restore()
+        {
+            _health.Restore();
+            _torch.Restore();
         }
 
         private void OnJump(InputValue input)

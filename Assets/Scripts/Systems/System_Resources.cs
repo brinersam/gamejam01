@@ -2,21 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ResourceTypeEnum
+{
+    Mitrhil,
+    Resin,
+}
+
 public class System_Resources : MonoBehaviour
 {
+    private Dictionary<ResourceTypeEnum, int> _data;
     public static System_Resources Instance;
 
-    public int Mithril_Collected = 0;
 
     private void Awake()
     {
+        _data = new();
         Instance = this;
     }
 
-    public void ReceiveMithril(int amnt) //Resourceenum type // todo if more resources (maybe lamp oil will be here lol)
+    public void Resource_Receive(int amnt, ResourceTypeEnum type)
     {
-        Mithril_Collected += amnt;
-        Debug.Log($"current mithril: {Mithril_Collected}");
+        if (_data.ContainsKey(type) == false)
+            _data[type] = 0;
+
+        _data[type] += amnt;
+    }
+
+    public bool Resource_Spend(int amnt, ResourceTypeEnum type)
+    {
+        if (_data.ContainsKey(type) == false)
+            _data[type] = 0;
+
+        if (_data[type] - amnt <= 0)
+            return false;
+
+        _data[type] -= amnt;
+        return true;
     }
     
 
