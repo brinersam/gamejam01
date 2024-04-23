@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22fb47185fc9b8a4d928fbc1f9961b21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerOwned: 1
   owner:
     _itemdata: {fileID: 0}
     _hitbox: {fileID: 0}
