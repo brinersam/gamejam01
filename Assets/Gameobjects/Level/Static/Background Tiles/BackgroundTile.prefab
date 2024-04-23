@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 559157818298518351, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_CallbackLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 559157818298518351, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
+      propertyPath: m_ContactCaptureLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1614379422284163719, guid: e52ef371e2b2e8e4fbd53ddeb7dae9a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
