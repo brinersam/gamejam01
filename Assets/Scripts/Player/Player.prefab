@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lightObj: {fileID: 3541000204907839718}
-  _fuelMax: 10
+  _fuelMax: 30
 --- !u!1 &1309275494705689719
 GameObject:
   m_ObjectHideFlags: 0

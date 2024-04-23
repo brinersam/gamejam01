@@ -1,4 +1,5 @@
 using System;
+using GJam.Player;
 using UnityEngine;
 
 [RequireComponent (typeof(Collider2D))]
@@ -35,9 +36,8 @@ public class RefillStation : MonoBehaviour, IUseable
             return;
         }
             
-
         Restock();
-        OpenShop();
+        ToggleShop();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -45,18 +45,19 @@ public class RefillStation : MonoBehaviour, IUseable
         CloseShop();
     }
 
-    private void OpenShop()
+    private void ToggleShop()
     {
-        Debug.Log("ShopOpen!");
+        System_UI.Instance.EnableShop(true, true);
     }
     private void CloseShop()
     {
-        Debug.Log("ShopClosed!");
+        System_UI.Instance.EnableShop(false);
+        Restock();
     }
 
     private void Restock()
     {
-        Debug.Log("Restocked!");
+        PlayerController.Instance.Restore();
     }
 
     private bool LeaksExist()
