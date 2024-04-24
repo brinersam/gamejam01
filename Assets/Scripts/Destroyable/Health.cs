@@ -7,8 +7,7 @@ public class Health : MonoBehaviour
     [SerializeField] private DumbWaysToDieEnum deathDelegate;
     [SerializeField] private bool _isPlayer = false;
     [SerializeField] private int _maxHp = 2;
-    [SerializeField] private float _frameDurationSeconds = 0.2f;
-
+    [SerializeField] private float _invulFrameDurationSeconds = 0.2f;
 
     private Movement _movement;
     private Rigidbody2D _rBody;
@@ -63,7 +62,7 @@ public class Health : MonoBehaviour
             return true;
 
         _iFramed = true;
-        System_Ticker.Instance.WaitCallback(_frameDurationSeconds, () => _iFramed = false);
+        System_Ticker.Instance.WaitCallback(_invulFrameDurationSeconds, () => _iFramed = false);
         
         return false;
     }

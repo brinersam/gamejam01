@@ -15,6 +15,7 @@ MonoBehaviour:
   Damage: 1
   Knockback: 600
   AttackCooldown: 0.4
+  AttackWindUp: 1
   AttackDistance: 3
   hitboxOBJ: {fileID: 8670717984979322725, guid: 3dcb4b76778f33348af7de28d1017350, type: 3}
   SelfDamage: 0

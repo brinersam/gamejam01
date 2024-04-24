@@ -6,6 +6,7 @@ public class SOItem : ScriptableObject
     public int Damage;
     public int Knockback;
     public float AttackCooldown;
+    public float AttackWindUp;
     public int AttackDistance;
     public GameObject hitboxOBJ;
     public bool SelfDamage;

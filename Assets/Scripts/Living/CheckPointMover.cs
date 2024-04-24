@@ -5,6 +5,7 @@ public class CheckPointMover : MonoBehaviour
 {
     [SerializeField] private float _speed = 1;
     [SerializeField] private bool _movesInitially = false;
+    [SerializeField] private bool _loops = true;
     [SerializeField] private Collider2D[] _checkPointList;
     [SerializeField] private ContactFilter2D _CF;
     [SerializeField] private float _distanceCheckEveryxSec = 5;
@@ -37,13 +38,23 @@ public class CheckPointMover : MonoBehaviour
         if (_movesInitially)
             _isMoving = true;
 
-        System_Ticker.Instance.OnSecond += () => _distCheckCD += 1;
+        System_Ticker.Instance.OnSecond += SubscribeTicker;
+    }
+
+    public void StartMoving()
+    {
+        _isMoving = true;
     }
 
     private void FixedUpdate()
     {
         if (_isMoving == true)
             transform.position = Move();
+    }
+
+    private void SubscribeTicker()
+    {
+        _distCheckCD += 1;
     }
 
     private Vector3 Move()
@@ -73,6 +84,12 @@ public class CheckPointMover : MonoBehaviour
 
         if (newIdx >= _checkPointList.Length)
         {
+            if (!_loops)
+            {
+                this.enabled = false;
+                System_Ticker.Instance.OnSecond -= SubscribeTicker;
+                return;
+            }
             _reversing = true;
             newIdx -= 2;
         }
