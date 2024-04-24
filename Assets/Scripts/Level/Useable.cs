@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using GJam.Player;
 using UnityEngine;
 
 [RequireComponent (typeof(Collider2D))]
@@ -33,7 +32,7 @@ public class Useable : MonoBehaviour // when approached, adds itself to player i
 
     private void Subscribe()
     {
-        PlayerController.Instance.IUseable += Callback;
+        PlayerController.Instance.ActivatableObjectsQueue += Callback;
         _subscribed = true;
     }
 
@@ -42,7 +41,7 @@ public class Useable : MonoBehaviour // when approached, adds itself to player i
         if (_subscribed)
         {
             _subscribed = false;
-            PlayerController.Instance.IUseable -= Callback;
+            PlayerController.Instance.ActivatableObjectsQueue -= Callback;
         }
     }
 

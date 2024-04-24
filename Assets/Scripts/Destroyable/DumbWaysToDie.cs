@@ -33,6 +33,7 @@ public static class DumbWays // idk why would you ever want to do anything else 
     }
     static void Respawn(GameObject gobj)
     {
+        System_Teleporter.Instance.Teleport(TeleportType.Respawn);
         Debug.Log("Player HELLA died");
     }
 }

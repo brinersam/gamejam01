@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using GJam.Player;
 using UnityEngine;
 
 public class IsClimbamble : MonoBehaviour

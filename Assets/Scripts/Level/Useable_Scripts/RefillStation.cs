@@ -1,5 +1,4 @@
 using System;
-using GJam.Player;
 using UnityEngine;
 
 [RequireComponent (typeof(Collider2D))]

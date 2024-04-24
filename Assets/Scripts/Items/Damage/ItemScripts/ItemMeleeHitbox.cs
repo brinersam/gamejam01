@@ -1,5 +1,4 @@
 using System;
-using GJam.Player;
 using UnityEngine;
 
 namespace GJam.Items

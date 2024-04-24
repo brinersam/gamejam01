@@ -8,7 +8,6 @@ public class Movement : MonoBehaviour // todo coyote jumps and all that stuff  h
     private float _rBodyGravityCached;
 
     private bool _isClimbing = false;
-    private bool _isStunned = false;
 
     private const float MIN_COLLISION_DISTANCE = 0.08f;
     private Vector3 _internalColliderSize = Vector3.one * 0.9f;
@@ -23,6 +22,8 @@ public class Movement : MonoBehaviour // todo coyote jumps and all that stuff  h
 
     private Vector3 _curImpulse;
 
+    public bool MovementDisabled = false;
+
     // [SerializeField] private float _gravityForce = 1;
     // private Vector2 _gravityVector = Vector2.down;
 
@@ -33,6 +34,9 @@ public class Movement : MonoBehaviour // todo coyote jumps and all that stuff  h
 
     public Vector3 GetMovement()
     {
+        if (MovementDisabled)
+            return Vector3.zero;
+
         Vector3 movementDir = Vector3.zero;
 
         movementDir += TryAddVector(_mvntVector, _moveForce);
@@ -89,10 +93,6 @@ public class Movement : MonoBehaviour // todo coyote jumps and all that stuff  h
         if (_isClimbing)
         {
             return mvmnt;
-        }
-        if (_isStunned)
-        {
-            return Vector2.zero;
         }
         else
         {

@@ -7,16 +7,17 @@ using GJam.Living.Movement;
 using GJam.Items;
 using System;
 
-namespace GJam.Player
-{
     [RequireComponent (typeof(Movement))]
     [RequireComponent (typeof(Health))]
     public class PlayerController : MonoBehaviour
     {
         public static PlayerController Instance;
 
+        [SerializeField] private GameObject _visualContainer;
         [SerializeField] private SpriteRenderer _visual;
         [SerializeField] private Transform _hitboxHolder;
+
+        private bool _disableInput = false;
 
         private Movement _movement;
         private Health _health;
@@ -42,7 +43,7 @@ namespace GJam.Player
         public Health Health => _health;
         public Torch Torch => _torch;
 
-        public Action IUseable;
+        public Action ActivatableObjectsQueue;
 
         private void Awake()
         {
@@ -113,9 +114,12 @@ namespace GJam.Player
                                 .GetComponent<HitBox>());
         }
 
-        private Vector3 CharacterToPointerNormalized()
+        public void Hide(bool on)
         {
-            return (Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position).normalized;
+            _movement.MovementDisabled = on;
+            _visualContainer.SetActive(!on);
+            _disableInput = on;
+            ActivatableObjectsQueue = null;
         }
 
         public void Restore()
@@ -126,13 +130,23 @@ namespace GJam.Player
             _invArr[2].Restore(System_Playerconfig.Instance.Restore_Torch());
         }
 
+        private Vector3 CharacterToPointerNormalized()
+        {
+            return (Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position).normalized;
+        }
+
+
         private void OnJump(InputValue input)
         {
+            if (_disableInput)
+                return;
             _movement.JumpImpulse();
         }
 
         private void OnMovement(InputValue input)
         {
+            if (_disableInput)
+                return;
             Vector2 mvmnt = input.Get<Vector2>();
             _visual.flipX = mvmnt.x < 0;
             _movement.ReceiveMovement(mvmnt);
@@ -140,6 +154,8 @@ namespace GJam.Player
 
         private void OnMainInteract(InputValue input)
         {
+            if (_disableInput)
+                return;
             if (_activeItem is null)
             {
                 Debug.Log("l click, no item");
@@ -150,6 +166,8 @@ namespace GJam.Player
 
         private void OnAltInteract(InputValue input)
         {
+            if (_disableInput)
+                return;
             if (_activeItem is null)
             {
                 Debug.Log("r click, no item");
@@ -160,23 +178,31 @@ namespace GJam.Player
 
         private void OnInv_0(InputValue input)
         {
+            if (_disableInput)
+                return;
             SetActiveItem(0);
         }
         private void OnInv_1(InputValue input)
         {
+            if (_disableInput)
+                return;
             _invArr[1].Use_Main(transform,Vector3.zero,_health,_torch);
         }
         private void OnInv_2(InputValue input)
         {
+            if (_disableInput)
+                return;
             _invArr[2].Use_Main(transform,Vector3.zero,_health,_torch);
         }
         private void OnInv_3(InputValue input)
         {
-            _invArr[3].Use_Main(transform,Vector3.zero,_health,_torch);
+            System_Teleporter.Instance.Teleport(TeleportType.Respawn);
+            //_invArr[3].Use_Main(transform,Vector3.zero,_health,_torch);
         }
         private void OnUse(InputValue input)
         {
-            IUseable?.Invoke();
+            if (_disableInput)
+                return;
+            ActivatableObjectsQueue?.Invoke();
         }
     }
-}
