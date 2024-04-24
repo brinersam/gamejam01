@@ -5,7 +5,8 @@ public class CheckPointMover : MonoBehaviour
 {
     [SerializeField] private float _speed = 1;
     [SerializeField] private bool _movesInitially = false;
-    [SerializeField] private bool _loops = true;
+    [SerializeField] private bool _multiUse = true;
+    [SerializeField] private bool _goesIdle = false;
     [SerializeField] private Collider2D[] _checkPointList;
     [SerializeField] private ContactFilter2D _CF;
     [SerializeField] private float _distanceCheckEveryxSec = 5;
@@ -18,6 +19,8 @@ public class CheckPointMover : MonoBehaviour
     private bool _isMoving = false;
     private bool _reversing = false;
     private Vector3 _moveVector;
+
+    public  bool IsMoving => _isMoving;
 
     private void Awake()
     {
@@ -33,17 +36,24 @@ public class CheckPointMover : MonoBehaviour
             return;
 
         transform.position = _checkPointList[0].gameObject.transform.position;
-        _idxGoalCP++;
 
         if (_movesInitially)
-            _isMoving = true;
+            StartMoving();
 
         System_Ticker.Instance.OnSecond += SubscribeTicker;
+    }
+
+    public void ResetTrap(bool andMove)
+    {
+        _idxGoalCP = 0;
+        if (andMove)
+            StartMoving();
     }
 
     public void StartMoving()
     {
         _isMoving = true;
+        ProceedToNextCheckPoint();
     }
 
     private void FixedUpdate()
@@ -82,16 +92,25 @@ public class CheckPointMover : MonoBehaviour
 
         int newIdx = AdvanceIdx(_idxGoalCP);
 
-        if (newIdx >= _checkPointList.Length)
+        if (newIdx >= _checkPointList.Length) // last checkpoint
         {
-            if (!_loops)
+            if (!_multiUse)
             {
                 this.enabled = false;
                 System_Ticker.Instance.OnSecond -= SubscribeTicker;
                 return;
             }
-            _reversing = true;
             newIdx -= 2;
+
+            if (_goesIdle)
+            {
+                transform.position = _checkPointList[0].gameObject.transform.position;
+                _isMoving = false;
+                return;
+            }
+
+            _reversing = true;
+            
         }
         else if (newIdx <= 0)
         {

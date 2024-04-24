@@ -45,7 +45,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 264
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -62,7 +62,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83dfea599ab3e144805530b7342e387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _projectile: {fileID: 0}
   _hitboxHolder: {fileID: 1439086592087430247}
   _weaponData: {fileID: 11400000, guid: 83c43db3d78de1745b6a95ffb3fd57d8, type: 2}
   _weapon:
@@ -107,6 +108,18 @@ PrefabInstance:
       propertyPath: _weaponData
       value: 
       objectReference: {fileID: 11400000, guid: 83c43db3d78de1745b6a95ffb3fd57d8, type: 2}
+    - target: {fileID: 4749297244427700857, guid: ae0fa02de7f1aa948b05a02c7b2631a2, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749297244427700857, guid: ae0fa02de7f1aa948b05a02c7b2631a2, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7358468
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749297244427700857, guid: ae0fa02de7f1aa948b05a02c7b2631a2, type: 3}
+      propertyPath: m_Color.r
+      value: 0.41176474
+      objectReference: {fileID: 0}
     - target: {fileID: 5429781496843466640, guid: ae0fa02de7f1aa948b05a02c7b2631a2, type: 3}
       propertyPath: m_Size.x
       value: 1
@@ -141,11 +154,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8346906980062740535, guid: ae0fa02de7f1aa948b05a02c7b2631a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.968407
+      value: -22.830841
       objectReference: {fileID: 0}
     - target: {fileID: 8346906980062740535, guid: ae0fa02de7f1aa948b05a02c7b2631a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -50.11094
+      value: -33.920967
       objectReference: {fileID: 0}
     - target: {fileID: 8346906980062740535, guid: ae0fa02de7f1aa948b05a02c7b2631a2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -183,7 +196,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1194299175732327704, guid: ae0fa02de7f1aa948b05a02c7b2631a2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8346906980062740535, guid: ae0fa02de7f1aa948b05a02c7b2631a2, type: 3}

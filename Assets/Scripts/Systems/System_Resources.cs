@@ -41,7 +41,7 @@ public class System_Resources : MonoBehaviour
         if (_data.ContainsKey(type) == false)
             _data[type] = 0;
 
-        if (_data[type] - amnt <= 0)
+        if (_data[type] - amnt < 0)
             return false;
 
         _data[type] -= amnt;

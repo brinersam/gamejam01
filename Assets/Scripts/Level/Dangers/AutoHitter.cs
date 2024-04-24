@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class AutoHitter : MonoBehaviour
 {
+    [SerializeField] CheckPointMover _projectile;
+
     [SerializeField] Transform _hitboxHolder;
     [SerializeField] SOItem _weaponData;
     [SerializeField] ItemMeleeHitbox _weapon;
@@ -17,7 +19,7 @@ public class AutoHitter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Attack(other);
+        Attack(other);  
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -26,6 +28,22 @@ public class AutoHitter : MonoBehaviour
     }
 
     private void Attack(Collider2D other)
+    {
+        if (_projectile != null)
+            RangedAttack();
+        else
+            MeleeAttack(other);   
+    }
+
+    private void RangedAttack()
+    {
+        if (_projectile.IsMoving)
+            return;
+
+        _projectile.ResetTrap(true);
+    }
+
+    private void MeleeAttack(Collider2D other)
     {
         _weapon.Use_Main(
             transform,

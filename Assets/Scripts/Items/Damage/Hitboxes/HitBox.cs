@@ -29,8 +29,8 @@ public class HitBox : MonoBehaviour
             if (collision == null) //ran out of collisions
                 break;
 
-            Debug.DrawLine(transform.position, collision.transform.position, Color.red, 4);
-            Debug.Log("drawing hit lines..");
+            // Debug.DrawLine(transform.position, collision.transform.position, Color.red, 4);
+            // Debug.Log("drawing hit lines..");
 
             if (!collision.TryGetComponent(out Health target))
                 continue;

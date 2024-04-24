@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trigger: {fileID: 2100409383352789143}
+  _escapeLadder: {fileID: 0}
   InProgress: 0
   Lava: {fileID: 6007001371478554651}
 --- !u!1 &6830832346905953718
@@ -495,8 +496,8 @@ Transform:
   m_GameObject: {fileID: 7907831624517696986}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: -36.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 7.2, y: -57.2, z: 0}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6989791227924070152}
@@ -562,9 +563,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e3eafb39eaf14418530c180f5830d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
+  _speed: 20
   _movesInitially: 0
-  _loops: 0
+  _multiUse: 0
+  _goesIdle: 0
   _checkPointList:
   - {fileID: 7711754178252985573}
   - {fileID: 7621079517998494614}
@@ -690,12 +692,16 @@ PrefabInstance:
       value: waypoint
       objectReference: {fileID: 0}
     - target: {fileID: 2529680915705671936, guid: 60e7f7d0cf4b05b4d98349af7ecb2ff0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529680915705671936, guid: 60e7f7d0cf4b05b4d98349af7ecb2ff0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20
+      value: 7.2
       objectReference: {fileID: 0}
     - target: {fileID: 2529680915705671936, guid: 60e7f7d0cf4b05b4d98349af7ecb2ff0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -36.4
+      value: -57.3
       objectReference: {fileID: 0}
     - target: {fileID: 2529680915705671936, guid: 60e7f7d0cf4b05b4d98349af7ecb2ff0, type: 3}
       propertyPath: m_LocalPosition.z
