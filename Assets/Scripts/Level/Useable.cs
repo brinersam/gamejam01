@@ -47,8 +47,6 @@ public class Useable : MonoBehaviour // when approached, adds itself to player i
 
     private void Callback()
     {
-        Debug.Log("used a thing");
-
         (_IUseableMonoBeh as IUseable).Use(out bool BlockFurtherUse);
 
         if (BlockFurtherUse)

@@ -28,7 +28,10 @@ public class ItemMeleeHitbox : IItem
 
             IsAttackInProgress = true;
             //Debug.Log("Windup!....");
-            System_Ticker.Instance.WaitCallback(_itemdata.AttackWindUp, () => Attack(caller,mouseDirVector));
+            if (_itemdata.AttackWindUp <= 0)
+                Attack(caller,mouseDirVector);
+            else
+                System_Ticker.Instance.WaitCallback(_itemdata.AttackWindUp, () => Attack(caller,mouseDirVector));
         }
 
         public void Use_Alt(Transform caller, Vector3 mouseDirVector)

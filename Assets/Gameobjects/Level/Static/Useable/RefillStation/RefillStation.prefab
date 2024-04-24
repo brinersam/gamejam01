@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5785180664644332916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1983670943271396066}
+  m_Layer: 8
+  m_Name: Pipecontainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1983670943271396066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5785180664644332916}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 833775722643073011}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8150137212947026756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94,12 +125,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8829641351094760631, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1983670943271396066}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1412067480464184249, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5381527696165813865}
   m_SourcePrefab: {fileID: 100100000, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
+--- !u!4 &833775722643073011 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8829641351094760631, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}
+  m_PrefabInstance: {fileID: 8150137212947026756}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7098712572854305021 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1412067480464184249, guid: 15e4e4317eaffc043a552510d83f288e, type: 3}

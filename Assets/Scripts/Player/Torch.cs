@@ -26,6 +26,11 @@ public class Torch : MonoBehaviour
         System_Ticker.Instance.OnSecond += Tick;
     }
 
+    public void StopTorchFromRunningOut()
+    {
+        System_Ticker.Instance.OnSecond -= Tick;
+    }
+
     public void Restore()
     {
         CurFuel = _fuelMax;

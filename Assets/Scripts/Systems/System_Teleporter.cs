@@ -12,6 +12,8 @@ public class System_Teleporter : MonoBehaviour
 {
     public static System_Teleporter Instance;
     [SerializeField] private List<GameObject> _tpPositionsRespawn;
+
+    private bool _isRespawning = false;
     
     private void Awake()
     {
@@ -20,6 +22,10 @@ public class System_Teleporter : MonoBehaviour
 
     public void Teleport(TeleportType type)
     {
+        if (_isRespawning)
+            return;
+        
+        _isRespawning = true;
         if (type == TeleportType.Respawn)
         {
             if (_tpPositionsRespawn.Count <= 0)
@@ -44,5 +50,6 @@ public class System_Teleporter : MonoBehaviour
         _tpPositionsRespawn.RemoveAt(0);
         PlayerController.Instance.Hide(false);
         PlayerController.Instance.Restore();
+        _isRespawning = false;
     }
 }

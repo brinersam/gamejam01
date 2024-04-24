@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62cd49337c3b04b4c99653ec3cfb4bcc, type: 3}
-  m_Name: Debug_EnemyMelee
+  m_Name: E_WindUp
   m_EditorClassIdentifier: 
-  Damage: 1
+  Damage: 2
   Knockback: 200
-  AttackCooldown: 0.2
+  AttackCooldown: 0.8
+  AttackWindUp: 0.3
   AttackDistance: 1
   hitboxOBJ: {fileID: 1747414005001855451, guid: 0810f2cf2a4553a4bbb210c6bd254279, type: 3}
   SelfDamage: 0
