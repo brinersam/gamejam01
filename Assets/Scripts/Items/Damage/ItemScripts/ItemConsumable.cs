@@ -7,18 +7,25 @@ using UnityEngine;
 public class ItemConsumable : IItem
 {
     [SerializeField] private SOItem _itemdata;
-    private bool disposedValue;
+    private ItemSlot _visual;
+    private int _amount;
 
     public SOItem Data => _itemdata;
     
 
-    public ItemConsumable(SOItem data) // Inventory inv
+    public ItemConsumable(SOItem data, ItemSlot visual) // Inventory inv
     {
         _itemdata = data;
+        _visual = visual;
     }
 
     public void Use_Main(Transform callerPos, Vector3 mouseDirVector, Health hp = null, Torch trch = null)
     {
+        if (_amount <= 0)
+            return;
+
+        _visual.UpdateVisual(--_amount);
+
         if (!Validate())
             return;
 
@@ -27,7 +34,6 @@ public class ItemConsumable : IItem
         
         if (trch)
             trch.RefillPct(_itemdata.Refiltorch_Pct);
-        //inv.remove(this)
     }
 
     public void Use_Alt(Transform callerPos, Vector3 mouseDirVector)
@@ -46,5 +52,11 @@ public class ItemConsumable : IItem
             return false;
         }
         return true;
+    }
+
+    public void Restore(int amnt)
+    {
+        _amount = Mathf.Max(amnt,_amount);
+        _visual.UpdateVisual(_amount);
     }
 }

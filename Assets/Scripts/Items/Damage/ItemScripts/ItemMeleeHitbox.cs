@@ -65,5 +65,10 @@ public class ItemMeleeHitbox : IItem
             }
             return true;
         }
+
+        public void Restore(int amnt)
+        {
+            return;
+        }
     }
 }

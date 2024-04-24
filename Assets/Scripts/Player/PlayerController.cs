@@ -24,15 +24,19 @@ namespace GJam.Player
         private IItem[] _invArr = new IItem[4];
         private int _item_active_idx = 0;
         
+        [SerializeField] private ItemSlot _item_slot1Visual;
+        [SerializeField] private ItemSlot _item_slot2Visual;
+        [SerializeField] private ItemSlot _item_slot3Visual;
+
         [SerializeField] private SOItem _startingItem_slot0;
         [SerializeField] private SOItem _startingItem_slot1;
         [SerializeField] private SOItem _startingItem_slot2;
         [SerializeField] private SOItem _startingItem_slot3;
 
-        [SerializeField] private IItem _item_slot0;
-        [SerializeField] private IItem _item_slot1;
-        [SerializeField] private IItem _item_slot2;
-        [SerializeField] private IItem _item_slot3;
+        private IItem _item_slot0;
+        private IItem _item_slot1HP;
+        private IItem _item_slot2TORCH;
+        private IItem _item_slot3;
         private IItem _activeItem => _invArr[_item_active_idx];
 
         public Health Health => _health;
@@ -62,21 +66,22 @@ namespace GJam.Player
             if (_startingItem_slot0 != null)
                 _item_slot0 = new ItemMeleeHitbox(_startingItem_slot0);
             if (_startingItem_slot1 != null)
-                _item_slot1 = new ItemConsumable(_startingItem_slot1);
+                _item_slot1HP = new ItemConsumable(_startingItem_slot1,_item_slot1Visual);
             if (_startingItem_slot2 != null)
-                _item_slot2 = new ItemConsumable(_startingItem_slot2);
+                _item_slot2TORCH = new ItemConsumable(_startingItem_slot2,_item_slot2Visual);
             if (_startingItem_slot3 != null)
-                _item_slot3 = new ItemConsumable(_startingItem_slot3);
+                _item_slot3 = new ItemConsumable(_startingItem_slot3,_item_slot3Visual);
 
             _invArr[0] = _item_slot0;
-            _invArr[1] = _item_slot1;
-            _invArr[2] = _item_slot2;
+            _invArr[1] = _item_slot1HP;
+            _invArr[2] = _item_slot2TORCH;
             _invArr[3] = _item_slot3;
         }
 
         private void Start()
         {
             SetActiveItem(_item_active_idx);
+            Restore();
         }
 
         private void FixedUpdate()
@@ -117,6 +122,8 @@ namespace GJam.Player
         {
             _health.Restore();
             _torch.Restore();
+            _invArr[1].Restore(System_Playerconfig.Instance.Restore_HP());
+            _invArr[2].Restore(System_Playerconfig.Instance.Restore_Torch());
         }
 
         private void OnJump(InputValue input)
@@ -157,15 +164,15 @@ namespace GJam.Player
         }
         private void OnInv_1(InputValue input)
         {
-            SetActiveItem(1);
+            _invArr[1].Use_Main(transform,Vector3.zero,_health,_torch);
         }
         private void OnInv_2(InputValue input)
         {
-            SetActiveItem(2);
+            _invArr[2].Use_Main(transform,Vector3.zero,_health,_torch);
         }
         private void OnInv_3(InputValue input)
         {
-            SetActiveItem(3);
+            _invArr[3].Use_Main(transform,Vector3.zero,_health,_torch);
         }
         private void OnUse(InputValue input)
         {
