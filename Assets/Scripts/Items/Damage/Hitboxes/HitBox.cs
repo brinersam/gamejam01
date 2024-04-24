@@ -1,18 +1,14 @@
-using System.Collections;
 using GJam.Items;
-using GJam.Player;
 using UnityEngine;
 
 public class HitBox : MonoBehaviour
 {
-    private Collider2D _collider;
     [SerializeField] private ContactFilter2D _cf;
-
-    public ItemMeleeHitbox owner;
-
+    private Collider2D _collider;
+    public ItemMeleeHitbox _item;
 
     private void Awake()
-    {
+    {   
         _collider = GetComponent<Collider2D>();
         gameObject.SetActive(false);
     }
@@ -41,10 +37,10 @@ public class HitBox : MonoBehaviour
         
             Vector3 knockbackVector = Vector3.zero;
 
-            if (owner.Data.Knockback > 0)
-                knockbackVector = Vector3.Normalize(collision.transform.position - transform.position); // get vector from item's owner position to collision's object position
+            if (_item.Data.Knockback > 0)
+                knockbackVector = Vector3.Normalize(collision.transform.position - transform.parent.position); // get vector from item's owner position to collision's object position
             
-            owner.OnHitting(target, knockbackVector);
+            _item.OnHitting(target, knockbackVector);
         }
 
         gameObject.SetActive(false);

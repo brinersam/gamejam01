@@ -138,7 +138,7 @@ namespace GJam.Player
                 Debug.Log("l click, no item");
                 return;
             }
-            _activeItem.Use_Main(this, CharacterToPointerNormalized());
+            _activeItem.Use_Main(transform, CharacterToPointerNormalized(), _health, _torch);
         }
 
         private void OnAltInteract(InputValue input)
@@ -148,7 +148,7 @@ namespace GJam.Player
                 Debug.Log("r click, no item");
                 return;
             }
-            _activeItem.Use_Alt(this, CharacterToPointerNormalized());
+            _activeItem.Use_Alt(transform, CharacterToPointerNormalized());
         }
 
         private void OnInv_0(InputValue input)

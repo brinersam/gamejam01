@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62cd49337c3b04b4c99653ec3cfb4bcc, type: 3}
-  m_Name: DebugMelee
+  m_Name: Debug_EnemyMelee
   m_EditorClassIdentifier: 
   Damage: 1
-  Knockback: 600
-  AttackCooldown: 0.4
-  AttackDistance: 3
-  hitboxOBJ: {fileID: 8670717984979322725, guid: 3dcb4b76778f33348af7de28d1017350, type: 3}
+  Knockback: 200
+  AttackCooldown: 0.2
+  AttackDistance: 1
+  hitboxOBJ: {fileID: 1747414005001855451, guid: 0810f2cf2a4553a4bbb210c6bd254279, type: 3}
   SelfDamage: 0
   Refiltorch_Pct: 0

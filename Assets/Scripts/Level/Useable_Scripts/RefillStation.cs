@@ -27,9 +27,9 @@ public class RefillStation : MonoBehaviour, IUseable
             DrawDebug();
     }
 
-    public void Use(out bool BlockUse)
+    public void Use(out bool BlockFurtherUses)
     {
-        BlockUse = false;
+        BlockFurtherUses = false;
         if (IsWorking == false)
         {
             Debug.Log("doesnt work");
@@ -57,6 +57,11 @@ public class RefillStation : MonoBehaviour, IUseable
 
     private void Restock()
     {
+        if (IsWorking == false)
+        {
+            Debug.Log("resotck failed => doesnt work");
+            return;
+        }
         PlayerController.Instance.Restore();
     }
 

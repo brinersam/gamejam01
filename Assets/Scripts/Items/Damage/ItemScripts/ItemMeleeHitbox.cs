@@ -18,7 +18,7 @@ public class ItemMeleeHitbox : IItem
             _itemdata = data;
         }
         
-        public void Use_Main(PlayerController caller, Vector3 mouseDirVector)
+        public void Use_Main(Transform caller, Vector3 mouseDirVector, Health hp = null, Torch trch = null)
         {
             if (InCooldown)
                 return;
@@ -28,17 +28,16 @@ public class ItemMeleeHitbox : IItem
 
             if (!Validate())
                 return;
-            Vector3 callerPos = caller.transform.position;
 
             // Debug.Log("drawing attack ray");
             // Debug.DrawRay(callerPos, mouseDirVector * 2, Color.red, 2f);
             
-            _hitbox.transform.position = callerPos + mouseDirVector * _itemdata.AttackDistance;
+            _hitbox.transform.position = caller.position + mouseDirVector * _itemdata.AttackDistance;
             _hitbox.Flash();
             //_hitbox.transform.Rotate(callerPos, Vector2.Angle(Vector2.right,mouseDirVector)); // todo
         }
 
-        public void Use_Alt(PlayerController caller, Vector3 mouseDirVector)
+        public void Use_Alt(Transform caller, Vector3 mouseDirVector)
         {
             if (!Validate())
                 return;
@@ -54,7 +53,7 @@ public class ItemMeleeHitbox : IItem
         public void LinkHitbox(HitBox box)
         {
             this._hitbox = box;
-            box.owner = this;
+            box._item = this;
         }
 
         private bool Validate()

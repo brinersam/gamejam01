@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour // todo coyote jumps and all that stuff  h
     private bool _isClimbing = false;
     private bool _isStunned = false;
 
-    private const float MIN_COLLISION_DISTANCE = 0.1f;
+    private const float MIN_COLLISION_DISTANCE = 0.08f;
     private Vector3 _internalColliderSize = Vector3.one * 0.9f;
 
     [SerializeField] private float _moveForce = 5;
@@ -111,8 +111,8 @@ public class Movement : MonoBehaviour // todo coyote jumps and all that stuff  h
             if (collision.distance <= MIN_COLLISION_DISTANCE) // movement blocked
                 return Vector3.zero;
             
-            if (collision.distance < .2f && force > collision.distance) // pillow to prevent getting stuck // activates at distance of .15
-                force = 0.1f;
+            // if (collision.distance < .15f && force > collision.distance) // pillow to prevent getting stuck // activates at distance of .15
+            //     force = 0.1f;
         }
 
         return (force - 0.1f) * movementDirection ;

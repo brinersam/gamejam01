@@ -7,11 +7,15 @@ public class Health : MonoBehaviour
     [SerializeField] private DumbWaysToDieEnum deathDelegate;
     [SerializeField] private bool _isPlayer = false;
     [SerializeField] private int _maxHp = 2;
+    [SerializeField] private float _frameDurationSeconds = 0.2f;
+
 
     private Movement _movement;
     private Rigidbody2D _rBody;
     private LootDrop _loot;
+
     private bool _healthGated = false;
+    private bool _iFramed = false;
     
     private int __curHp;
     public int CurHp {get {return __curHp;} set {__curHp = HPWatcher(value);}}
@@ -39,6 +43,9 @@ public class Health : MonoBehaviour
 
     public void GetHit(SOItem _itemdata, Vector3 knockbackVector)
     {
+        if (BlockedByIFrames())
+            return;
+
         CurHp -= _itemdata.Damage;
 
         if (knockbackVector != default)
@@ -48,6 +55,17 @@ public class Health : MonoBehaviour
             else if (_rBody != null)
                 _rBody.AddForce(knockbackVector * _itemdata.Knockback);
         }
+    }
+
+    private bool BlockedByIFrames()
+    {
+        if (_iFramed)
+            return true;
+
+        _iFramed = true;
+        System_Ticker.Instance.WaitCallback(_frameDurationSeconds, () => _iFramed = false);
+        
+        return false;
     }
 
     private void Die()

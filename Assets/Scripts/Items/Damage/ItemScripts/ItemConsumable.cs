@@ -17,17 +17,20 @@ public class ItemConsumable : IItem
         _itemdata = data;
     }
 
-    public void Use_Main(PlayerController caller, Vector3 mouseDirVector)
+    public void Use_Main(Transform callerPos, Vector3 mouseDirVector, Health hp = null, Torch trch = null)
     {
         if (!Validate())
             return;
 
-        caller.Health.GetHit(_itemdata, default);
-        caller.Torch.RefillPct(_itemdata.Refiltorch_Pct);
+        if (hp)
+            hp.GetHit(_itemdata, default);
+        
+        if (trch)
+            trch.RefillPct(_itemdata.Refiltorch_Pct);
         //inv.remove(this)
     }
 
-    public void Use_Alt(PlayerController caller, Vector3 mouseDirVector)
+    public void Use_Alt(Transform callerPos, Vector3 mouseDirVector)
     {
         if (!Validate())
             return;
