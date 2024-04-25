@@ -42,10 +42,14 @@ public class System_Teleporter : MonoBehaviour
     {
         PlayerController.Instance.Hide(true);
         yield return new WaitForSeconds(2);
+
+        if (!System_GRU.Instance.IsSlumbers)
+            System_GRU.Instance.Gru_Sleep();
+
         Transform newpos = _tpPositionsRespawn[0].transform;
         PlayerController.Instance.transform.position = newpos.position;
-
         yield return new WaitForSeconds(1);
+
         Destroy(_tpPositionsRespawn[0]);
         _tpPositionsRespawn.RemoveAt(0);
         PlayerController.Instance.Hide(false);

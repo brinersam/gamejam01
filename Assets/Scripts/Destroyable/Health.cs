@@ -10,11 +10,12 @@ public class Health : MonoBehaviour
     [SerializeField] private bool _isPlayer = false;
     [SerializeField] private int _maxHp = 2;
     [SerializeField] private float _invulFrameDurationSeconds = 0.2f;
-
+    
     private Movement _movement;
     private Rigidbody2D _rBody;
     private LootDrop _loot;
 
+    private bool _firstRestore = true;
     private bool _healthGated = false;
     private bool _iFramed = false;
     
@@ -33,12 +34,18 @@ public class Health : MonoBehaviour
             _movement = movement;
         else if (TryGetComponent(out Rigidbody2D rbody)) // cat is fine too
             _rBody = rbody;
-
+        
         __curHp = _maxHp;
     }
 
     public void Restore()
     {
+        if (_firstRestore)
+        {   
+            _firstRestore = false;
+            CurHp = (int)(System_Playerconfig.Instance.Start_HP * _maxHp); 
+            return;
+        }
         CurHp = _maxHp;
     }
 

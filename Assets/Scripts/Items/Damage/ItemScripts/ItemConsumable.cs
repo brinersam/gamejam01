@@ -18,7 +18,7 @@ public class ItemConsumable : IItem
         _visual = visual;
     }
 
-    public void Use_Main(Transform callerPos, Vector3 mouseDirVector, Health hp = null, Torch trch = null)
+    public void Use_Main(Transform callerPos, Vector3 mouseDirVector, Health hp = null, Torch trch = null, Animator attackAnims = null)
     {
         if (_amount <= 0)
             return;

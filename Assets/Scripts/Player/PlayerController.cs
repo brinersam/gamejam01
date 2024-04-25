@@ -13,7 +13,7 @@ using System;
     {
         public static PlayerController Instance;
 
-        [SerializeField] private Animator _animsAttack;
+        [SerializeField] private Animator _characterAttackAnim;
 
         [SerializeField] private GameObject _visualContainer;
         [SerializeField] private SpriteRenderer _visual;
@@ -67,7 +67,7 @@ using System;
                 Debug.LogWarning("No movement component!", gameObject);
 
             if (_startingItem_slot0 != null)
-                _item_slot0 = new ItemMeleeHitbox(_startingItem_slot0, _animsAttack);
+                _item_slot0 = new ItemMeleeHitbox(_startingItem_slot0);
             if (_startingItem_slot1 != null)
                 _item_slot1HP = new ItemConsumable(_startingItem_slot1,_item_slot1Visual);
             if (_startingItem_slot2 != null)

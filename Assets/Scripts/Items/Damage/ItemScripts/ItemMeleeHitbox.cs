@@ -15,13 +15,12 @@ public class ItemMeleeHitbox : IItem
 
         public SOItem Data => _itemdata;
 
-        public ItemMeleeHitbox(SOItem data, Animator anims = null)
+        public ItemMeleeHitbox(SOItem data)
         {
-            // _anims = anims;
             _itemdata = data;
         }
         
-        public void Use_Main(Transform caller, Vector3 mouseDirVector, Health hp = null, Torch trch = null)
+        public void Use_Main(Transform caller, Vector3 mouseDirVector, Health hp = null, Torch trch = null, Animator attackAnims = null)
         {
             if (!Validate())
                 return;
@@ -31,10 +30,13 @@ public class ItemMeleeHitbox : IItem
 
             IsAttackInProgress = true;
             //Debug.Log("Windup!....");
+            if (attackAnims)
+                attackAnims.SetTrigger("Windup");
+                
             if (_itemdata.AttackWindUp <= 0)
-                Attack(caller,mouseDirVector);
+                Attack(caller,mouseDirVector, attackAnims);
             else
-                System_Ticker.Instance.WaitCallback(_itemdata.AttackWindUp, () => Attack(caller,mouseDirVector));
+                System_Ticker.Instance.WaitCallback(_itemdata.AttackWindUp, () => Attack(caller,mouseDirVector, attackAnims));
         }
 
         public void Use_Alt(Transform caller, Vector3 mouseDirVector)
@@ -56,9 +58,12 @@ public class ItemMeleeHitbox : IItem
             box._item = this;
         }
 
-        private void Attack(Transform caller, Vector3 mouseDirVector)
+        private void Attack(Transform caller, Vector3 mouseDirVector, Animator attackAnims = null)
         {
             //Debug.Log("Attack!....");
+            if (attackAnims)
+                attackAnims.SetTrigger("Swing");
+
             IsInCooldown = true;
             System_Ticker.Instance.WaitCallback(_itemdata.AttackCooldown, () => {IsInCooldown = false; IsAttackInProgress = false;});
 

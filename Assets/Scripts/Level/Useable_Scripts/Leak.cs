@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Leak : MonoBehaviour, IUseable
 {
+    [SerializeField] private ParticleSystem _particleSystem;
     readonly private int _resinToFix = 20;
     public bool Fixed {get;private set;}
 
@@ -15,6 +16,7 @@ public class Leak : MonoBehaviour, IUseable
             BlockUse = true;
             Fixed = true;
             GetFixed();
+            _particleSystem.Stop();
         }
     }
 
