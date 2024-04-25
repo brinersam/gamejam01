@@ -11,7 +11,7 @@ public enum DumbWaysToDieEnum
 }
 
 public static class DumbWays // idk why would you ever want to do anything else other than destroy the object why did i make this wtf
-{
+{                           // future wolfie: thank fuck you made this, this decopules death from health and is modular and would be hell to setup later
     public static Dictionary<DumbWaysToDieEnum,Action<GameObject>> ToDie;
 
     static DumbWays()

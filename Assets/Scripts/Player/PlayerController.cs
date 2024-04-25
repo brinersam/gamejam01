@@ -198,7 +198,7 @@ using System;
         }
         private void OnInv_3(InputValue input)
         {
-            System_Teleporter.Instance.Teleport(TeleportType.Respawn);
+            //System_Teleporter.Instance.Teleport(TeleportType.Respawn);
             //_invArr[3].Use_Main(transform,Vector3.zero,_health,_torch);
         }
         private void OnUse(InputValue input)
