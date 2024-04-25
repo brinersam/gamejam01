@@ -4,12 +4,13 @@ using UnityEngine;
 [RequireComponent (typeof(Collider2D))]
 public class RefillStation : MonoBehaviour, IUseable
 {
+    [SerializeField] private Animator _anims;
     [SerializeField] bool _forceWorking = false;
     [SerializeField] private RefillStation _prevStation;
     [SerializeField] private Leak[] _leaksSinceLastStation;
     [SerializeField] bool _debugRays = false;
 
-    public bool IsWorking => _forceWorking || _prevStation.IsWorking && LeaksExist() == false;
+    public bool IsWorking => IsWorkingCached();
 
     private void Start()
     {
@@ -39,6 +40,17 @@ public class RefillStation : MonoBehaviour, IUseable
         ToggleShop();
     }
 
+    private bool IsWorkingCached()
+    {
+        if (_forceWorking || _prevStation.IsWorking && LeaksExist() == false)
+        {
+            _anims.SetBool("Fixed", true);
+            _forceWorking = true;
+            return true;
+        }
+        return false;
+    }
+    
     private void OnTriggerExit2D(Collider2D collision)
     {
         CloseShop();
