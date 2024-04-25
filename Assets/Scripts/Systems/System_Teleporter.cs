@@ -53,6 +53,7 @@ public class System_Teleporter : MonoBehaviour
         Destroy(_tpPositionsRespawn[0]);
         _tpPositionsRespawn.RemoveAt(0);
         PlayerController.Instance.Hide(false);
+        PlayerController.Instance.Movement._isClimbing = false;
         PlayerController.Instance.Restore();
         _isRespawning = false;
     }

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class LavaOnHit : MonoBehaviour
 {
+    [SerializeField] GameObject _UILose;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("player died");
-        System_Teleporter.Instance.Teleport(TeleportType.Respawn);
+        PlayerController.Instance.Hide(true);
+        PlayerController.Instance.Movement.MovementDisabled = true;
+        _UILose.SetActive(true);
     }
 
 }

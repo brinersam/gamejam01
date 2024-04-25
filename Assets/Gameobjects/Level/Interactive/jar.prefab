@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MithrilDropAmnt: 2
-  ResinDropAmnt: 0
+  ResinDropAmnt: 20
 --- !u!1 &8455870907935121781
 GameObject:
   m_ObjectHideFlags: 0

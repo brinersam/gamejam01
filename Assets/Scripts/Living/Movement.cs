@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour // todo coyote jumps and all that stuff  h
     [SerializeField] private Rigidbody2D _rBody;
     private float _rBodyGravityCached;
 
-    private bool _isClimbing = false;
+    public bool _isClimbing = false;
 
     private const float MIN_COLLISION_DISTANCE = 0.08f;
     private Vector3 _internalColliderSize = Vector3.one * 0.9f;

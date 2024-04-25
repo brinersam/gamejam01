@@ -19,6 +19,15 @@ public class System_Playerconfig : MonoBehaviour
         Instance = this;
     }
 
+    public void TorchUpgrade()
+    {
+        _startingTorchRefills += 1;
+    }
+    public void HpConsumableUpgrade()
+    {
+        _startingHpRefills += 1;
+    }
+
     public int Restore_Torch()
     {
         return _startingTorchRefills;

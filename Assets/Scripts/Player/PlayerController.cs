@@ -43,6 +43,7 @@ using System;
         private IItem _activeItem => _invArr[_item_active_idx];
 
         public Health Health => _health;
+        public Movement Movement => _movement;
         public Torch Torch => _torch;
 
         public Action ActivatableObjectsQueue;

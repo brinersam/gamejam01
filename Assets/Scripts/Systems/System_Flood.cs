@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class System_Flood : MonoBehaviour
 {
+    [SerializeField] GameObject _uiwin;
+
     [SerializeField] private EscapedFloodTrigger _trigger;
     [SerializeField] private GameObject _escapeLadder;
 
@@ -31,6 +33,6 @@ public class System_Flood : MonoBehaviour
 
     public void PlayerReachedSurface()
     {
-        Debug.Log("gamer on surface");
+        _uiwin.SetActive(true);
     }
 }
