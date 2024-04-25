@@ -6,6 +6,8 @@ namespace GJam.Items
 [Serializable]
 public class ItemMeleeHitbox : IItem
     {
+        // [SerializeField] private Animator _anims;
+
         [SerializeField] private SOItem _itemdata;
         [SerializeField] private HitBox _hitbox;
         private bool IsInCooldown = false;
@@ -13,8 +15,9 @@ public class ItemMeleeHitbox : IItem
 
         public SOItem Data => _itemdata;
 
-        public ItemMeleeHitbox(SOItem data)
+        public ItemMeleeHitbox(SOItem data, Animator anims = null)
         {
+            // _anims = anims;
             _itemdata = data;
         }
         
@@ -63,7 +66,7 @@ public class ItemMeleeHitbox : IItem
             // Debug.DrawRay(caller.position, mouseDirVector * 2, Color.red, 2f);
             
             _hitbox.transform.position = caller.position + mouseDirVector * _itemdata.AttackDistance;
-            _hitbox.Flash();
+            _hitbox.Flash(mouseDirVector.x < 0);
             //_hitbox.transform.Rotate(callerPos, Vector2.Angle(Vector2.right,mouseDirVector)); // todo
         }
 

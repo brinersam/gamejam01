@@ -5,17 +5,24 @@ public class HitBox : MonoBehaviour
 {
     [SerializeField] private ContactFilter2D _cf;
     private Collider2D _collider;
+    private SpriteRenderer _sprite;
+    private Animator _anims;
+    
     public ItemMeleeHitbox _item;
 
     private void Awake()
     {   
+        _sprite = GetComponent<SpriteRenderer>();
+        _anims = GetComponent<Animator>();
         _collider = GetComponent<Collider2D>();
-        gameObject.SetActive(false);
+        _collider.enabled = false;
     }
 
-    public void Flash()
+    public void Flash(bool mirrorImg = false)
     {
-        gameObject.SetActive(true);
+        _sprite.flipX = mirrorImg;
+        _anims.SetTrigger("Attack");
+        _collider.enabled = true;
         Hit();
     }
 
@@ -43,6 +50,6 @@ public class HitBox : MonoBehaviour
             _item.OnHitting(target, knockbackVector);
         }
 
-        gameObject.SetActive(false);
+        _collider.enabled = false;
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AutoHitter : MonoBehaviour
 {
+    [SerializeField] private Animator _animsAttack;
     [SerializeField] CheckPointMover _projectile;
 
     [SerializeField] Transform _hitboxHolder;
@@ -13,7 +14,7 @@ public class AutoHitter : MonoBehaviour
 
     void Start()
     {
-        _weapon = new ItemMeleeHitbox(_weaponData);
+        _weapon = new ItemMeleeHitbox(_weaponData, _animsAttack);
         UpdateHitbox(_weapon);
     }
 

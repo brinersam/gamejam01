@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] private Animator _anims;
+
     [SerializeField] private DumbWaysToDieEnum deathDelegate;
     [SerializeField] private bool _isPlayer = false;
     [SerializeField] private int _maxHp = 2;
@@ -62,7 +64,17 @@ public class Health : MonoBehaviour
             return true;
 
         _iFramed = true;
-        System_Ticker.Instance.WaitCallback(_invulFrameDurationSeconds, () => _iFramed = false);
+
+        if (_anims)
+            _anims.SetBool("IFramed", true);
+
+        System_Ticker.Instance.WaitCallback(_invulFrameDurationSeconds,
+        () => 
+        {
+            _iFramed = false;
+            if (_anims)
+                _anims.SetBool("IFramed", false);
+        });
         
         return false;
     }

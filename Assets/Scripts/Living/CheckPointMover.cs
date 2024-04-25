@@ -64,7 +64,8 @@ public class CheckPointMover : MonoBehaviour
 
     private void SubscribeTicker()
     {
-        _distCheckCD += 1;
+        if (_isMoving == true)
+            _distCheckCD += 1;
     }
 
     private Vector3 Move()
